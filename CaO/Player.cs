@@ -9,7 +9,7 @@ namespace CaO
 
         //private string name;
 
-        public string Name { get; init; }
+        public string Name { get; private set; }
 
         private int _health;
         public int Health
@@ -18,7 +18,7 @@ namespace CaO
             {
                 return _health;
             }
-            set
+            private set
             {
                 if (value < 0)
                     value = 1;
@@ -53,6 +53,29 @@ namespace CaO
             Health = health;
         }
 
+        public Player(Player p)
+        {
+            this.Name = p.Name;
+            this._health = p.Health;
+        }
+
+        public void Rebirth()
+        {
+            Health = 100;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            Health -= damage;
+        }
+
+  
+
+        public void AllowForNameChange(string name)
+        {
+            this.Name = name;
+        }
+
 
 
 
@@ -69,6 +92,9 @@ namespace CaO
                this.health = health;
            }*/
 
-
+        public override string ToString()
+        {
+            return $"Player {Name} has {Health} health.";
+        }
     }
 }
